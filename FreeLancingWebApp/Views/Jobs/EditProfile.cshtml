@@ -1,0 +1,59 @@
+﻿@model FreeLancingWebApp.Models.ViewModels.profileViewModels
+
+@{
+    ViewData["Title"] = "EditProfile";
+}
+
+<h1>EditProfile</h1>
+
+<h4>profileViewModels</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="SelfDescription" class="control-label"></label>
+                <input asp-for="SelfDescription" class="form-control" />
+                <span asp-validation-for="SelfDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Remotly" /> @Html.DisplayNameFor(model => model.Remotly)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile"></label>
+                <input type="file" asp-for="ImageFile" class="form-control-file" />
+                @if (!string.IsNullOrEmpty(Model.Img))
+                {
+                    <small class="text-muted">Choose a new image to replace the current one.</small>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expertise" class="control-label"></label>
+                <input asp-for="Expertise" class="form-control" />
+                <span asp-validation-for="Expertise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

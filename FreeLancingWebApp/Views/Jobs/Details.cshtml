@@ -1,0 +1,66 @@
+﻿@model FreeLancingWebApp.Models.Job
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.JobName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JobName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.JobDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Img)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Img)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ispublished)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ispublished)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.JobId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

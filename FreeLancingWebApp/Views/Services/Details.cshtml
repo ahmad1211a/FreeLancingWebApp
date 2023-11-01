@@ -1,0 +1,54 @@
+﻿@model FreeLancingWebApp.Models.Service
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceDesc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServiceDesc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceImgUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServiceImgUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ispublished)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ispublished)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ServiceId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

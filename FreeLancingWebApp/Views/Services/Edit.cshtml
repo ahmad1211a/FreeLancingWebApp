@@ -1,0 +1,62 @@
+﻿@model FreeLancingWebApp.Models.Service
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h2>Edit Service</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="ServiceId" />
+
+    <div class="form-group">
+        <label asp-for="Category" class="control-label"></label>
+        <input asp-for="Category" class="form-control" />
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServiceDesc" class="control-label"></label>
+        <input asp-for="ServiceDesc" class="form-control" />
+        <span asp-validation-for="ServiceDesc" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="ImageFile"></label>
+        <input type="file" asp-for="ImageFile" class="form-control-file" />
+        @if (!string.IsNullOrEmpty(Model.ServiceImgUrl))
+        {
+            <small class="text-muted">Choose a new image to replace the current one.</small>
+        }
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreationDate" class="control-label"></label>
+        <input asp-for="CreationDate" class="form-control" />
+        <span asp-validation-for="CreationDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+        </label>
+    </div>
+
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Ispublished" /> @Html.DisplayNameFor(model => model.Ispublished)
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

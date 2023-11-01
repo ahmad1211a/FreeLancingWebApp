@@ -1,0 +1,97 @@
+﻿@model FreeLancingWebApp.Models.Job
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> _signInManager
+@inject UserManager<IdentityUser> _userManager
+
+<!-- ill test it 
+i changed job rate and statuse input
+it was jobRate=....
+and in the controller without jobrate
+-->
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Job</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+             <div class="form-group">
+                 <label asp-for="JobName" class="control-label"></label>
+                 <input asp-for="ServiceId"  type="hidden"/>
+                    <select asp-for="JobName" class="form-control" asp-items="ViewBag.categories"> 
+                        <option value="-1">---Select Category---</option>
+
+                    </select>
+
+             </div>
+            <div class="form-group">
+                <label asp-for="JobDescription" class="control-label"></label>
+                <input asp-for="JobDescription" class="form-control" />
+                <span asp-validation-for="JobDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+           
+            </div>
+            <div class="form-group">
+                <label asp-for="price" class="control-label"></label>
+                <input asp-for="price" class="form-control" />
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+
+                    <input asp-for="UEmail" type="hidden" value="@await _userManager.GetUserAsync(User)" />
+                    <input asp-for="UName" type="hidden" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditinalInformation" class="control-label"></label>
+                <input asp-for="AdditinalInformation" class="form-control" />
+                <span asp-validation-for="AdditinalInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" type="file" class="form-control" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                
+               
+             </div>
+            
+            <div class="form-group">
+
+                <div class="form-group">
+                    <label asp-for="CreationDate" class="control-label"></label>
+                    <input asp-for="CreationDate" class="form-control" />
+                    <span asp-validation-for="CreationDate" class="text-danger"></span>
+                </div>
+               
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Ispublished" /> @Html.DisplayNameFor(model => model.Ispublished)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

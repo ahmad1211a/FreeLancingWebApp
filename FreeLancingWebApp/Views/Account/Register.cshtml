@@ -1,0 +1,78 @@
+﻿@model FreeLancingWebApp.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<h4>RegisterViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expertise" class="control-label"></label>
+                <input asp-for="Expertise" class="form-control" />
+                <span asp-validation-for="Expertise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+           <br/>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    Ability to Work
+                    <input class="form-check-input" asp-for="Remotly" /> @Html.DisplayNameFor(model => model.Remotly)
+                </label>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="SelfDescription" class="control-label">
+                    About Me:
+                </label>
+                <input asp-for="SelfDescription" class="form-control" />
+                <span asp-validation-for="SelfDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="ImageFile" class="control-label">Your Profile Photo</label>
+                <input asp-for="ImageFile" type="file" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Home">Home</a>
+</div>
+
