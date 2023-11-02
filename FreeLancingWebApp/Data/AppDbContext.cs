@@ -28,21 +28,7 @@ public class AppDbContext : IdentityDbContext
     public DbSet<FreeLancingWebApp.Models.ViewModels.CreateRoleViewModel> CreateRoleViewModel { get; set; } = default!;
 
 
-   /* protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-       base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<Job>()
-            .HasOne(j => j.Service)
-            .WithMany(s => s.Jobs)
-            .HasForeignKey(j => j.ServiceId);
-
-        // Optionally, if you want to configure the reverse navigation property in Service:
-        modelBuilder.Entity<Service>()
-        .HasMany(s => s.Jobs)
-        .WithOne(j => j.Service)
-            .HasForeignKey(s => s.ServiceId);
-    }*/
+  
 }
 
 

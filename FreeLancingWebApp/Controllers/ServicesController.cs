@@ -30,6 +30,10 @@ namespace FreeLancingWebApp.Controllers
                           View(await _context.services.ToListAsync()) :
                           Problem("Entity set 'AppDbContext.services'  is null.");
         }
+        public IActionResult Contact()
+        {
+            return View();  
+        }
         [AllowAnonymous]
         // GET: Services/Details/5
         public async Task<IActionResult> Details(int? id)

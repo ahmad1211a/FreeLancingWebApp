@@ -26,14 +26,7 @@ namespace FreeLancingWebApp.UI.ViewComponents
                 services=_context.services.ToList(),
             };
 
-        //     List<SearchViewModel> model = new List<SearchViewModel>
-             //{
-    // new SearchViewModel
-    //{
-      //  services = await _context.services.ToListAsync(),
-        //jobs = await _context.jobs.ToListAsync()
-   // }
-     //    };
+      
      
             return View(model);
 

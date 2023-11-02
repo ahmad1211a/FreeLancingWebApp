@@ -59,17 +59,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a asp-controller="Home" asp-action="Index" class="nav-item nav-link">Home</a>
-                        <a href="~/about.html" class="nav-item nav-link">About</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
+                        <a asp-action="About" asp-controller="Jobs" class="nav-item nav-link">About</a>
                        
-                        <a href="~/contact.html" class="nav-item nav-link">Contact</a>
+                       
+                        <a asp-action="Contact" asp-controller="Services" class="nav-item nav-link">Contact</a>
                     </div>
 
                     @if (_signInManager.IsSignedIn(User))
@@ -78,28 +71,49 @@
                         if (User.IsInRole("Administrator"))
                         {
 
-                            <a class="nav-item nav-link" asp-area="Administrator" asp-controller="Dashboard" asp-action="Index">
-                                    Dashboard
-                            </a>
+
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@User.Identity.Name</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a asp-area="Administrator" asp-controller="Dashboard" asp-action="Index" class="dropdown-item">Dashboard</a>
+                                    <a asp-area="" asp-controller="Account" asp-action="Logout" class="dropdown-item"> Logout</a>
+                                    <a class="nav-item nav-link" asp-area="" asp-controller="Jobs" asp-action="UserProfile" asp-route-uname="@User.Identity.Name" class="dropdown-item"> Profile</a>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                          //  <a class="nav-item nav-link" asp-area="Administrator" asp-controller="Dashboard" asp-action="Index">
+                            //        Dashboard
+                           // </a>
 
 
                         }
-                        if (User.IsInRole("User"))
+                       else if (User.IsInRole("User"))
                         {
 
 
-                            <a class="nav-item nav-link" asp-area="" asp-controller="Jobs" asp-action="UserProfile" asp-route-email="@ViewData["UserEmail"]">
+                        //    <a class="nav-item nav-link" asp-area="" asp-controller="Jobs" asp-action="UserProfile" asp-route-uname="@User.Identity.Name">
                                               
-                               Profile
-                            </a>
-
+                          //     Profile
+                            //</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">@User.Identity.Name</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a asp-area="" asp-controller="Account" asp-action="Logout" class="dropdown-item"> Logout</a>
+                                    <a class="nav-item nav-link" asp-area="" asp-controller="Jobs" asp-action="UserProfile" asp-route-uname="@User.Identity.Name" class="dropdown-item"> Profile</a>
+                                </div>
+                            </div>
 
                         }
 
-                        <a class="nav-item nav-link" asp-area="" asp-controller="Account" asp-action="Logout">
-                                Logout @User.Identity.Name
+                       // <a class="nav-item nav-link" asp-area="" asp-controller="Account" asp-action="Logout">
+                        ////        Logout @User.Identity.Name
 
-                            </a>
+                           // </a>
                        
                     }
                     else
@@ -121,7 +135,7 @@
         <div class="container-fluid header bg-white p-0">
             <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
                 <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Find A <span class="text-primary">Perfect Serviece</span> To Live With Your Family</h1>
+                    <h1 class="display-5 animated fadeIn mb-4">Find A <span class="text-primary">Perfect Serviece</span> To All Your Needs</h1>
                     <p class="animated fadeIn mb-4 pb-2">
                       
                     </p>

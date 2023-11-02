@@ -12,6 +12,7 @@ using FreeLancingWebApp.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FreeLancingWebApp.Controllers
 {
@@ -42,6 +43,7 @@ namespace FreeLancingWebApp.Controllers
         }
 
         [AllowAnonymous]
+
         public IActionResult Profile(string email)
 
         {
@@ -50,12 +52,11 @@ namespace FreeLancingWebApp.Controllers
             return View(prof);
         }
      
-        public IActionResult UserProfile(string email)
+        public IActionResult UserProfile(string uname)
 
         {
-            var userEmail = HttpContext.Session.GetString("UserEmail");
-            ViewData["UserEmail"] = userEmail;
-            var prof = _context.profileViewModels.Where(e => e.Email == email);
+          
+            var prof = _context.profileViewModels.Where(e => e.Name == uname);
             return View(prof);
         }
         public IActionResult CreateProfile()
@@ -74,27 +75,28 @@ namespace FreeLancingWebApp.Controllers
          
                      return View(data); 
         }
+        public IActionResult About()
+        {
+            return View();
+        }
         public async Task<IActionResult> IndexSelected(string ServiceName)
         {
-            //check if its not null
             var data = _context.jobs.Where(e => e.JobName == ServiceName);
-            //  return _context.jobs != null ? 
-            //      View(await _context.jobs.ToListAsync()) :
-            //     Problem("Entity set 'AppDbContext.jobs'  is null.");
+            
             return View(data);
         }
 
         [AllowAnonymous]
 
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null || _context.jobs == null)
             {
                 return NotFound();
             }
 
-            var job = await _context.jobs
-                .FirstOrDefaultAsync(m => m.JobId == id);
+            var job =  _context.jobs
+                .Where(m => m.JobId == id);
             if (job == null)
             {
                 return NotFound();
@@ -138,6 +140,19 @@ namespace FreeLancingWebApp.Controllers
                 //job.CreationDate = DateTime.Now;
                 job.UEmail = user.UserName;
                 job.UName = user.Email;
+                var selectedCategory = job.ServiceId;   
+
+                
+                var cet = _context.services.ToList();
+                var cot=cet.FirstOrDefault(e=>e.ServiceId== selectedCategory);
+                job.JobName = cot.Category;
+                var gn = cot;
+
+                
+               // var cat = _context.services.Where(s => s.ServiceId == job.ServiceId);
+              
+                //job.JobName = _context.services; 
+                
                     // Rest of your action code
                 
                 _context.Add(job);
@@ -147,7 +162,7 @@ namespace FreeLancingWebApp.Controllers
             return View(job);
         }
 
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.jobs == null)
@@ -166,7 +181,7 @@ namespace FreeLancingWebApp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrator")]
 
         public async Task<IActionResult> Edit(int id, Job job)
         {
@@ -177,6 +192,24 @@ namespace FreeLancingWebApp.Controllers
 
             if (ModelState.IsValid)
             {
+                var existingService = _context.jobs.Find(id);
+
+                if (existingService == null)
+                {
+                    return NotFound();
+                }
+
+
+                // Handle image upload and update ServiceImgUrl
+                var fileName = Path.GetFileName(job.ImageFile.FileName);
+                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "img", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    job.ImageFile.CopyTo(stream);
+                }
+
+                existingService.Img = fileName;
                 try
                 {
                     _context.Update(job);
@@ -260,8 +293,7 @@ namespace FreeLancingWebApp.Controllers
             return View(profile);
 
         }
-        [Authorize(Roles = "Administrators")]
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.jobs == null)
@@ -283,7 +315,7 @@ namespace FreeLancingWebApp.Controllers
         [HttpPost, ActionName("Delete")]
 
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrator")]
 
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

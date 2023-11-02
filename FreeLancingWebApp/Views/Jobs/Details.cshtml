@@ -1,66 +1,55 @@
-﻿@model FreeLancingWebApp.Models.Job
+﻿@model IEnumerable<Job>
 
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
+@foreach (var item in Model)
+{
+    <link rel="stylesheet" type="text/css" href="~/css/Pofile.css">
 
-<div>
-    <h4>Job</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JobName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JobName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JobDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JobDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UEmail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UEmail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Img)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Img)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ispublished)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ispublished)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.JobId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <section class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div class="card card-style1 border-0">
+                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 mb-4 mb-lg-0">
+                                    <img src="~/img/@item.Img" alt="" class="top-left-img col-lg-6 mb-4 mb-lg-0">
+                                </div>
+                                <div class="col-lg-6 px-xl-10">
+                                    <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                        <h3 class="h2 text-white mb-0">@item.UName</h3>
+
+                                    </div>
+                                    <ul class="list-unstyled mb-1-9">
+                                        <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Job:</span> @item.JobName</li>
+                                        <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Eamil:</span>@item.UEmail</li>
+                                        <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Price per Hour:</span>@item.price</li>
+                                        
+                                        <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">We Give you:</span>@item.JobDescription</li>
+                                    </ul>
+                                    <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
+                                        <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
+                                        <li><a href="#!"><i class="ti-facebook"></i></a></li>
+                                        <li><a href="#!"><i class="ti-pinterest"></i></a></li>
+                                        <li><a href="#!"><i class="ti-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div>
+                        <span class="section-title text-primary mb-3 mb-sm-4">About this job</span>
+                        <p>@item.AdditinalInformation</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}

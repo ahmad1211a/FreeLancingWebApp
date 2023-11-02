@@ -1,0 +1,29 @@
+﻿@using FreeLancingWebApp.UI.ViewComponents
+
+@{
+    ViewData["Title"] = "About";
+}
+
+<h1>About</h1>
+<p class="mb-4">Welcome to Makaan This website aims to provide the best freelance services with smooth browsing and searching for the required service </p>
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <img class="img-fluid w-100" src="~/img/freelancing10.jpg">
+
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="mb-4">#1 Place To Find The Perfect Property</h1>
+                <p class="mb-4">Makaan is an exclusive network of the top freelance software developers, designers, finance experts, product managers, and project managers in the world. Top companies hire Toptal freelancers for their most important projects.</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Stick to your budget</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Get quality work done quickly</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Work With Hand-Selected Talent</p>
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("Profiles")
+

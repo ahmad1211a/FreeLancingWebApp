@@ -67,6 +67,19 @@ namespace FreeLancingWebApp.Controllers
 
             if (ModelState.IsValid)
             {
+                var isEmailAlreadyExists = _context.Users.Any(x => x.Email == model.Email);
+                if (isEmailAlreadyExists)
+                {
+                    ModelState.AddModelError("Email", "User with this email already exists");
+                    return View(model);
+                }
+
+                var isUnameAlreadyExists = _context.Users.Any(x => x.UserName == model.Name);
+                if (isUnameAlreadyExists)
+                {
+                    ModelState.AddModelError("Name", "User with this user name already exists");
+                    return View(model);
+                }
                 if (model.ImageFile != null)
                 {
                     // Handle image upload
@@ -86,23 +99,23 @@ namespace FreeLancingWebApp.Controllers
                     UserName = model.Name,
 
                 };
-                
-               var role = await _roleManager.FindByIdAsync(user.Id);
+
+                var role = await _roleManager.FindByIdAsync(user.Id);
 
                 var Profile = new profileViewModels
                 {
                     Profileid = model.ID,
-                    Email = model.Email,    
+                    Email = model.Email,
                     Name = model.Name,
                     Location = model.Location,
                     SelfDescription = model.SelfDescription,
-                    Remotly=model.Remotly,  
-                   Img=model.Img,
-                  Expertise=model.Expertise
+                    Remotly = model.Remotly,
+                    Img = model.Img,
+                    Expertise = model.Expertise
                 };
 
 
-             
+
 
 
                 var appuser = new ApplicationUser
@@ -111,13 +124,13 @@ namespace FreeLancingWebApp.Controllers
                     Email = model.Email
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
-               Iresult = await _userManager.AddToRoleAsync(user, "User");
+                Iresult = await _userManager.AddToRoleAsync(user, "User");
 
 
                 if (result.Succeeded)
 
                 {
-                    
+
 
 
                     _context.profileViewModels.Add(Profile);
@@ -127,9 +140,9 @@ namespace FreeLancingWebApp.Controllers
 
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                   // return RedirectToAction("Chat");
+                    // return RedirectToAction("Chat");
                     return RedirectToAction("Login", "Account");
-                    
+
                 }
                 foreach (var err in result.Errors)
                 {
@@ -164,7 +177,7 @@ namespace FreeLancingWebApp.Controllers
             
                 if (result.Succeeded)
                 {
-                    
+                    ViewBag.UEmail = model.Email;
                     var user = await _userManager.FindByEmailAsync(model.Email!);
                     var userEmail = user.Email;
                     HttpContext.Session.SetString("UserEmail", user.Email);

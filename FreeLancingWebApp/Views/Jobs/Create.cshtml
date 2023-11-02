@@ -22,15 +22,16 @@ and in the controller without jobrate
             <div asp-validation-summary="All" class="text-danger"></div>
              <div class="form-group">
                  <label asp-for="JobName" class="control-label"></label>
-                 <input asp-for="ServiceId"  type="hidden"/>
-                    <select asp-for="JobName" class="form-control" asp-items="ViewBag.categories"> 
-                        <option value="-1">---Select Category---</option>
+                
+                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.categories">
+                    <option value="-1">---Select Category---</option>
 
                     </select>
+                    <input asp-for="JobName" type="hidden" />
 
              </div>
             <div class="form-group">
-                <label asp-for="JobDescription" class="control-label"></label>
+                <label asp-for="JobDescription" class="control-label">What will you do</label>
                 <input asp-for="JobDescription" class="form-control" />
                 <span asp-validation-for="JobDescription" class="text-danger"></span>
             </div>
@@ -52,7 +53,7 @@ and in the controller without jobrate
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="AdditinalInformation" class="control-label"></label>
+                <label asp-for="AdditinalInformation" class="control-label">"Additinal Information to Descripe your services</label>
                 <input asp-for="AdditinalInformation" class="form-control" />
                 <span asp-validation-for="AdditinalInformation" class="text-danger"></span>
             </div>

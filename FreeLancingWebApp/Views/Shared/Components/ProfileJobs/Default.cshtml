@@ -1,0 +1,73 @@
+﻿@using FreeLancingWebApp.Models
+@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<Job>
+@inject SignInManager<IdentityUser> _signInManager
+@inject UserManager<IdentityUser> _userManager
+
+
+<!-- Property List Start -->
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    <h1 class="mb-3"> Your Services </h1>
+                </div>
+            </div>
+            
+        </div>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+
+                <!-- Property List Start
+
+                JobStatus is Email
+                -->
+                <div class="row g-4">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="property-item rounded overflow-hidden">
+                                <div class="position-relative overflow-hidden">
+                                    <a asp-controller="Jobs" asp-action="Profile" asp-route-email="@item.UName"><img class="img-fluid" style="width: 600px; height: 400px;" src="~/img/@item.Img" alt=""></a>
+                                    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">@item.JobName</div>
+                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                        @item.JobDescription
+                                    </div>
+                                </div>
+                                <div class="p-4 pb-0">
+                                    <!--  <h5 class="text-primary mb-3">$12,345</h5>////////////////////////////////////////////////////////////////////////////// -->
+                                    <a asp-controller="Jobs" asp-action="Profile" asp-route-email="@item.UName">@item.UEmail</a>
+                                </div>
+                                <div class="d-flex border-top">
+                                    <small class="flex-fill text-center border-end py-2"><i></i>starts form $@item.price/H</small>
+                                    <small class="flex-fill text-center border-end py-2">
+                                        <a asp-action="Details" asp-controller="Jobs" asp-route-id="@item.JobId"> <i class="fa fa-bed text-primary me-2"></i>  </a>
+
+                                    </small>
+
+                                </div>
+                                <div class="d-flex border-top">
+                                   
+                                    <small class="flex-fill text-center border-end py-2">
+                                        <a asp-action="Details" asp-controller="Jobs" asp-route-id="@item.JobId"> Details-</a>
+                                          <a asp-action="Edit" asp-controller="Jobs" asp-route-id="@item.JobId">Edit- </a>
+                                        <a asp-action="Delete" asp-controller="Jobs" asp-route-id="@item.JobId">Delete </a>
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+                  
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

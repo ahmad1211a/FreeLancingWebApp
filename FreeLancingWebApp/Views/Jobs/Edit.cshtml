@@ -24,6 +24,11 @@
                 <span asp-validation-for="JobDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AdditinalInformation" class="control-label"></label>
+                <input asp-for="AdditinalInformation" class="form-control" />
+                <span asp-validation-for="AdditinalInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="UEmail" class="control-label"></label>
                 <input asp-for="UEmail" class="form-control" />
                 <span asp-validation-for="UEmail" class="text-danger"></span>
@@ -34,9 +39,12 @@
                 <span asp-validation-for="UName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Img" class="control-label"></label>
-                <input asp-for="Img" class="form-control" />
-                <span asp-validation-for="Img" class="text-danger"></span>
+                <label asp-for="ImageFile"></label>
+                <input type="file" asp-for="ImageFile" class="form-control-file" />
+                @if (!string.IsNullOrEmpty(Model.Img))
+                {
+                    <small class="text-muted">Choose a new image to replace the current one.</small>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="CreationDate" class="control-label"></label>

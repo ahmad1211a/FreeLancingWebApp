@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FreeLancingWebApp.Models.Job>
+
+@{
+    ViewData["Title"] = "Jobs";
+}
+
+<h1>Jobs</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdditinalInformation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Img)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditinalInformation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Img)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+          
+            <td>
+                <a asp-action="Edit" asp-area="" asp-controller="Jobs" asp-route-id="@item.JobId">Edit</a> |
+                    <a asp-action="Details" asp-area="" asp-controller="Jobs" asp-route-id="@item.JobId">Details</a> |
+                    <a asp-action="Delete" asp-area="" asp-controller="Jobs" asp-route-id="@item.JobId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
